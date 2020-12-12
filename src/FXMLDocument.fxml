@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="243.0" prefWidth="320" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
     <children>
-        <Button fx:id="button" layoutX="126" layoutY="90" onAction="#handleButtonAction" text="Coba woy" />
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+        <Button fx:id="button" layoutX="217.0" layoutY="97.0" onAction="#handleButtonAction" text="Coba woy" />
+        <Label fx:id="label" layoutX="19.0" layoutY="25.0" minHeight="16" minWidth="69" prefHeight="17.0" prefWidth="95.0" text="Input Text (File)" />
+      <TextField layoutX="139.0" layoutY="21.0" prefHeight="25.0" prefWidth="45.0" />
+      <Label fx:id="label1" layoutX="19.0" layoutY="56.0" minHeight="16" minWidth="21.0" prefHeight="17.0" prefWidth="95.0" text="Nilai α (alpha) :" />
+      <TextField layoutX="138.0" layoutY="52.0" prefHeight="25.0" prefWidth="45.0" />
     </children>
 </AnchorPane>

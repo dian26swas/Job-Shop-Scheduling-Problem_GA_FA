@@ -3,14 +3,22 @@ class Individu  {
     private Gen[] kromosom;
     private double fitness;
     protected double probability; // dipakai untuk roulette wheel
-    
+    private double makespan;// dipakai untuk firefly algorithm
 
-    public Individu(Gen[] kromosom, Double fitness) {
+    public Individu(Gen[] kromosom, double fitness, double makespan) {
         this.kromosom = kromosom;
         this.fitness = fitness;
+        this.makespan = makespan;
     }
 
+    public double getMakespan() {
+        return makespan;
+    }
 
+    public void setMakespan(double makespan) {
+        this.makespan = makespan;
+    }
+    
     public Gen[] getKromosom() {
         return kromosom;
     }

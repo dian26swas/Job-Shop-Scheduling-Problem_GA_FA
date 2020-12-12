@@ -19,7 +19,10 @@ public class AlgoritmaFirefly {
         this.alpha = alpha;
     }
 
-    
+    public double intesitasCahaya(AlgoritmaGenetik ag,Gen[] kasus, Gen[] popMut, int jmlMesin)
+    {
+        return ag.calcMakespan(kasus, popMut,jmlMesin );
+    }
     public int jarak(Individu idv1, Individu idv2)
     {
         int result=0;
@@ -44,7 +47,10 @@ public class AlgoritmaFirefly {
     public double pergerakan(Individu idv1, Individu idv2)
     {
         double result=0.0;
-        result=this.beta0*Math.exp(-this.gamma*Math.pow(jarak(idv1,idv2), 2));
+        int max = 1;
+        double rand = (double) ((Math.random() * (max - 0)) + 0);
+        //rand antara 0-1
+        result=idv1.getMakespan()+keatraktifan(idv1, idv2)*(Math.abs(idv1.getMakespan()-idv2.getMakespan())+(alpha*(0.5*rand)));
         return result;
     }
     

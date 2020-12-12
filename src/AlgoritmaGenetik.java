@@ -51,7 +51,7 @@ public class AlgoritmaGenetik {
     public Individu[] initialPop(Gen[] arrGen) {
         Individu[] populasi = new Individu[popSize];
         for (int i = 0; i < popSize; i++) {
-            populasi[i] = new Individu(generateKromosom(arrGen), 0.0);
+            populasi[i] = new Individu(generateKromosom(arrGen), 0.0,0.0);
 
         }
         return populasi;
@@ -399,6 +399,21 @@ public class AlgoritmaGenetik {
         Individu[] newPop = new Individu[populasi.length];
         Individu parent1 = getFittest(populasi);
         Individu parent2 = rouletteWheel(populasi);
+        System.out.println("p1 :");
+        for(int p=0;p<parent1.getKromosom().length;p++)
+        {
+            System.out.print(parent1.getKromosom()[p].getOperation()+ " ");
+            
+            
+        }
+        System.out.println("");
+        System.out.println("p2 :");
+        for(int k=0;k<parent1.getKromosom().length;k++)
+            {
+                System.out.print(parent2.getKromosom()[k].getOperation()+ " ");
+               
+            }
+        System.out.println("");
         for (int i = 0; i < populasi.length; i++) {
 
             if (this.crossoverRate > Math.random()) {
@@ -422,7 +437,7 @@ public class AlgoritmaGenetik {
                     System.out.print(offspring[o].getOperation() + " ");
                 }
                 System.out.println("");
-                newPop[i] = new Individu(offspring, 0.0);
+                newPop[i] = new Individu(offspring, 0.0,0.0);
                 System.out.println("newPop crossover : ");
                 int l = newPop[i].getKromosom().length;
                 for (int h = 0; h < l; h++) {
@@ -459,7 +474,7 @@ public class AlgoritmaGenetik {
                 for (int k = 0; k < indv1.getKromosom().length; k++) {
                     System.out.print(indv1.getKromosom()[k].getOperation() + " ");
                 }
-                newPop[i] = new Individu(indv1.getKromosom(), 0.0);
+                newPop[i] = new Individu(indv1.getKromosom(), 0.0,0.0);
             } else {
                 newPop[i] = populasi[i];
             }
