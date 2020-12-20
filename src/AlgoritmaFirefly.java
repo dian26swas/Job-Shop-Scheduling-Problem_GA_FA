@@ -19,10 +19,10 @@ public class AlgoritmaFirefly {
         this.alpha = alpha;
     }
 
-    public double intesitasCahaya(AlgoritmaGenetik ag,Gen[] kasus, Gen[] popMut, int jmlMesin)
-    {
-        return ag.calcMakespan(kasus, popMut,jmlMesin );
-    }
+//    public double intesitasCahaya(JobShop js,Gen[] kasus, Gen[] popMut, int jmlMesin)
+//    {
+//        return js.calcMakespan(kasus, popMut,jmlMesin );
+//    }
     public int jarak(Individu idv1, Individu idv2)
     {
         int result=0;
