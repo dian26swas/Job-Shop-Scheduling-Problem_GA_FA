@@ -109,17 +109,13 @@ public class JobShop {
                 //cek kalo overlap mesinnya sama dengan yang ada di array keep (gantt chart)
                 if (!keep.isEmpty()) {
                     if (keep.get(keep.size() - 1).getNoMesin() == kasus[x].getNoMesin()) {
-//                        for (int k = 0; k < kasus.length; k++) {
-//                            if (keep.get(keep.size() - 1).equals(kasus[k])) {
-//                                kasus[x].setmPred(k);
+
                         kasus[x].setMakespanTemp(kasus[x].getTime() + keep.get(keep.size() - 1).getTime());
                         kasus[x].setTime(kasus[x].getMakespanTemp());
                         count++;
                         kasus[x].setWaktuMulai(keep.get(keep.size() - 1).getTime());
                         keep.add(kasus[x]);
 
-//                            }
-//                        }
                     } else {
                         kasus[x].setMakespanTemp(kasus[x].getTime());
                         kasus[x].setTime(kasus[x].getMakespanTemp());

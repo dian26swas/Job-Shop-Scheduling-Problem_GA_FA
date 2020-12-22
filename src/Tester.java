@@ -88,23 +88,23 @@ public class Tester {
             
             System.out.println(arrGen[g].getOperation()+" "+ arrGen[g].getTime()+ " "+arrGen[g].getNoMesin());
         }
-        
-        
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("Masukan jumlah job :");
-//        int jmlJob = sc.nextInt();
-//        System.out.println("Masukan jumlah mesin :");
-//        int jmlMesin = sc.nextInt();
-//        arrGen = new Gen[jmlMesin * jmlJob];
-//        System.out.println("Masukan elemen kromosom dan waktu pengerjaan tiap operasi: ");
-//
-//
-//        for (int e = 0; e < arrGen.length; e++) {
-//            arrGen[e] = new Gen(sc.next(), sc.nextInt(),-1,-1,sc.nextInt(),0,0);
-//        }
+//coba makespan
+//        Gen[] gener= new Gen[9];
+//        gener[0] = new Gen("O23",9,0,0,3,0,0);
+//        gener[1] = new Gen("O11",10,0,0,1,0,0);
+//        gener[2] = new Gen("O21",8,0,0,1,0,0);
+//        gener[3] = new Gen("O12",9,0,0,2,0,0);
+//        gener[4] = new Gen("O22",7,0,0,2,0,0);
+//        gener[5] = new Gen("O13",8,0,0,3,0,0);
+//        gener[6] = new Gen("O33",10,0,0,3,0,0);
+//        gener[7] = new Gen("O31",8,0,0,1,0,0);
+//        gener[8] = new Gen("O32",11,0,0,2,0,0);
+//        int job=3;
+//        int mesin=3;
         AlgoritmaGenetik ga = new AlgoritmaGenetik( 0.3, 0.8, 0);
         JobShop js=new JobShop(arrGen,5,job,mesin);
-        //Gen[] krom = js.generateKromosom();
+//        js.calcMakespan(gener, gener, mesin);
+        
         //bangkitkan populasi
         populasi = js.initialPop();
         System.out.println("Generate Population :");
@@ -184,7 +184,7 @@ public class Tester {
                 for(int po=0;po<populasi.length;po++)
                 {
 //                    System.out.println("moveTest: "+fa.pergerakan(populasi[popF],idvTest));
-//                    System.out.println("move: "+fa.pergerakan(populasi[popF],populasi[po]));
+                    System.out.println("move: "+fa.pergerakan(populasi[popF],populasi[po]));
                     if(populasi[popF].getFitness()>populasi[po].getFitness())
                     {
                         System.out.println("move: "+fa.pergerakan(populasi[popF],populasi[po]));

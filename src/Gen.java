@@ -7,6 +7,7 @@ class Gen
     private int noMesin;
     private int makespanTemp;
     private int waktuMulai;
+    private int isi;//1-6
 
     public Gen(String operation, int time, int jPred, int mPred, int noMesin, int makespanTemp, int waktuMulai) {
         this.operation = operation;
