@@ -7,7 +7,8 @@ class Gen
     private int noMesin;
     private int makespanTemp;
     private int waktuMulai;
-    private int isi;//1-6
+    private int noJob;
+    
 
     public Gen(String operation, int time, int jPred, int mPred, int noMesin, int makespanTemp, int waktuMulai) {
         this.operation = operation;
@@ -19,6 +20,14 @@ class Gen
         this.waktuMulai = waktuMulai;
     }
 
+    public int getNoJob() {
+        return noJob;
+    }
+
+    public void setNoJob(int noJob) {
+        this.noJob = noJob;
+    }
+
     public int getWaktuMulai() {
         return waktuMulai;
     }
@@ -27,8 +36,6 @@ class Gen
         this.waktuMulai = waktuMulai;
     }
 
-    
-
     public int getMakespanTemp() {
         return makespanTemp;
     }
@@ -36,8 +43,6 @@ class Gen
     public void setMakespanTemp(int makespanTemp) {
         this.makespanTemp = makespanTemp;
     }
-
-    
 
     public int getNoMesin() {
         return noMesin;

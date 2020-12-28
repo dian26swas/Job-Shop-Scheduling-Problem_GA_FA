@@ -70,12 +70,6 @@ public class AlgoritmaGenetik {
 
             if (partialSum >= roulette) {
 
-//                for (int j = 0; j < populasi[i].getKromosom().length; j++) {
-//                    System.out.print(populasi[i].getKromosom()[j].getOperation() + " ");
-//
-//                }
-//               System.out.println();
-//                System.out.println("fitness: " + populasi[i].getFitness());
                 result = populasi[i];
                 break;
 
@@ -87,13 +81,12 @@ public class AlgoritmaGenetik {
     }
 
     //one point crossover
-    //pertama cari kromosom yang fitness paling besar menggunakan method getFittest()
-    //cari kromosom menggunakan roulette wheel
+    //cari 2 parent kromosom menggunakan roulette wheel
     //kedua kromosom tersebut di crossover dengan memilih random point pembaginya
     public Individu[] crossover(Individu[] populasi) {
 
         Individu[] newPop = new Individu[populasi.length];
-        Individu parent1 = getFittest(populasi);
+        Individu parent1 = rouletteWheel(populasi);
         Individu parent2 = rouletteWheel(populasi);
         System.out.println("p1 :");
         for(int p=0;p<parent1.getKromosom().length;p++)

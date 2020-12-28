@@ -173,21 +173,23 @@ public class Tester {
                 System.out.println("");
             }
             //Masuk Algoritma Firefly
-            // jarak antar kunang-kunang
+           
             
-            AlgoritmaFirefly fa= new AlgoritmaFirefly(1, 0.0001, 0.05);
-            System.out.println("Jarak yang paling dekat :");
-            
-            //System.out.println("testmsp:"+idvTest.getMakespan());
-            for(int popF=0;popF<populasi.length;popF++)
+            AlgoritmaFirefly fa= new AlgoritmaFirefly(1, 0.0001, 1);
+            //isi OS MS tiap individu di populasi
+            for(int i=0;i<populasi.length;i++)
             {
-                for(int po=0;po<populasi.length;po++)
+                fa.isiOS(populasi[i]);
+            }
+            for(int popF=0;popF<populasi.length-1;popF++)
+            {
+                for(int po=popF+1;po<populasi.length;po++)
                 {
-//                    System.out.println("moveTest: "+fa.pergerakan(populasi[popF],idvTest));
-                    System.out.println("move: "+fa.pergerakan(populasi[popF],populasi[po]));
                     if(populasi[popF].getFitness()>populasi[po].getFitness())
                     {
-                        System.out.println("move: "+fa.pergerakan(populasi[popF],populasi[po]));
+                        //pergerakan kunang2
+                        fa.alphaStepMS(populasi[popF], populasi[po]);
+                        fa.alphaStepOS(populasi[popF], populasi[po]);
                     }
                     else
                     {
