@@ -116,7 +116,7 @@ public class FXMLDocumentController implements Initializable {
             for(int o=1;o<=mesin;o++)
             {
                 operation[j-1][o-1]="O"+j+o+"";
-                arrGen[counter]=new Gen(operation[j-1][o-1], arrWaktu[counter], -1, -1, arrMesin[counter], 0, 0);
+                //arrGen[counter]=new Gen(operation[j-1][o-1], arrWaktu[counter], -1, -1, arrMesin[counter], 0, 0);
                 counter++;
             }
         }

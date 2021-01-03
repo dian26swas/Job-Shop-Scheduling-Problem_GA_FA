@@ -10,7 +10,7 @@ class Gen
     private int noJob;
     
 
-    public Gen(String operation, int time, int jPred, int mPred, int noMesin, int makespanTemp, int waktuMulai) {
+    public Gen(String operation, int time, int jPred, int mPred, int noMesin, int makespanTemp, int waktuMulai,int noJob) {
         this.operation = operation;
         this.time = time;
         this.jPred = jPred;
@@ -18,7 +18,9 @@ class Gen
         this.noMesin = noMesin;
         this.makespanTemp = makespanTemp;
         this.waktuMulai = waktuMulai;
+        this.noJob= noJob;
     }
+    
 
     public int getNoJob() {
         return noJob;

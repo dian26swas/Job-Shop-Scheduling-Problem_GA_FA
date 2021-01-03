@@ -26,28 +26,6 @@ public class AlgoritmaGenetik {
         this.elitism = elitism;
     }
 
-    public double calcFitness(int makespan) {
-        return 1.0 / (makespan + 1.0);
-    }
-
-    //mencari fitness yang paling besar
-    public Individu getFittest(Individu[] populasi) {
-        Arrays.sort(populasi, new Comparator<Individu>() {
-            @Override
-            public int compare(Individu o1, Individu o2) {
-                if (o1.getFitness() > o2.getFitness()) {
-                    return -1;
-                } else if (o1.getFitness() < o2.getFitness()) {
-                    return 1;
-                }
-                return 0;
-            }
-
-        });
-        System.out.println("Fittest : " + populasi[0].getFitness());
-        return populasi[0];
-    }
-
     //roulettewheel selection
     public Individu rouletteWheel(Individu[] populasi) {
 
@@ -85,6 +63,7 @@ public class AlgoritmaGenetik {
     //kedua kromosom tersebut di crossover dengan memilih random point pembaginya
     public Individu[] crossover(Individu[] populasi) {
 
+        
         Individu[] newPop = new Individu[populasi.length];
         Individu parent1 = rouletteWheel(populasi);
         Individu parent2 = rouletteWheel(populasi);
@@ -103,7 +82,7 @@ public class AlgoritmaGenetik {
                
             }
         System.out.println("");
-        for (int i = 0; i < populasi.length; i++) {
+        for (int i = 1; i < populasi.length; i++) {
 
             if (this.crossoverRate > Math.random()) {
 
@@ -111,7 +90,7 @@ public class AlgoritmaGenetik {
 
                 int max = parent1.getKromosom().length - 2;
                 int rand = (int) ((Math.random() * (max - 1)) + 1);
-                System.out.println("random :" + rand);
+                
                 for (int j = 0; j < rand; j++) {
 
                     offspring[j] = parent1.getKromosom()[j];
@@ -144,8 +123,8 @@ public class AlgoritmaGenetik {
     //swap mutation
     public Individu[] mutation(Individu[] populasi) {
         Individu[] newPop = new Individu[populasi.length];
-        for (int i = 0; i < populasi.length; i++) {
-            Individu indv1 = getFittest(populasi);
+        for (int i = 1; i < populasi.length; i++) {
+            Individu indv1 = populasi[i];
             if (this.mutationRate > Math.random()) {
                 //Gen[]  = new Gen[indv1.getKromosom().length];
                 System.out.println("sebelum dimutasi");
