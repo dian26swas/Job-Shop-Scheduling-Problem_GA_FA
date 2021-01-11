@@ -94,12 +94,10 @@ public class FireflyTester {
                 }
             }
 
-            //arrGen[i].getMakespanTemp();
-           System.out.println("testing");
+            //arrGen[i].getMakespanTemp(); System.out.println("testing");
             Gen[] kromo=js.generateKromosom(arrGen);
             int makespan=js.calcMakespan(kromo);
-            double fitnes=js.calcFitness(makespan);
-            
+            double fitnes=js.calcFitness(makespan);           
             Individu individu=new Individu(kromo,fitnes,makespan);
             populasi[i]= individu;
             System.out.println(populasi[i].getFitness());

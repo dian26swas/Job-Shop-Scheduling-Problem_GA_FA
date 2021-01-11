@@ -92,7 +92,7 @@ public class JobShop {
         //cek urutan job berdasakan mesin 
         //masukin predesesor berdasarkan mesin dan job
         ArrayList<Integer> urutMesin = new ArrayList<Integer>();
-        int mesin = 1;
+        int mesin = 0;
         int counter = gener.length;
         while (counter > 0) {
             for (int j = 0; j < gener.length; j++) {
@@ -103,7 +103,7 @@ public class JobShop {
                 }
             }
             mesin++;
-            
+           
         }
         for (int m = 0; m < urutMesin.size(); m++) {
             if (m % jmlMesin == 0) {

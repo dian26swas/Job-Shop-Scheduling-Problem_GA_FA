@@ -123,20 +123,11 @@ public class GeneticTester {
         System.out.println(id.getFitness());
         
        
-        AlgoritmaGenetik ga= new AlgoritmaGenetik(0.3, 0.8, 0);
+        AlgoritmaGenetik ga= new AlgoritmaGenetik(0.3, 0.8);
         for (int generasi = 0; generasi < 5; generasi++) {
             
             System.out.println("Best solution: " + js.getFittest(populasi).getFitness());
-            System.out.println("Hasil roulette wheel :");
-            Individu rwRes= ga.rouletteWheel(populasi);
-
-            for (int j = 0; j < rwRes.getKromosom().length; j++) {
-                    System.out.print(rwRes.getKromosom()[j].getOperation() + " ");
-
-                }
-            //seleksi roulette
-            
-            System.out.println("");
+             
             System.out.println("hasil crossover");
             //crossover
             Individu[] popCross = ga.crossover(populasi);

@@ -29,16 +29,25 @@ import javafx.stage.Stage;
  * @author ASUS
  */
 public class Main extends Application {
-    
+    protected Stage stage;
+    protected boolean status;
    @Override
     public void start(Stage stage) throws Exception {
-       Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+//        if(this.status==true)
+//        {
+//            this.stage=stage;
+//            this.stage.close();
+//        }
+//        else
+//        {
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        this.stage=stage;
         Scene scene = new Scene(root);
-        
         
         stage.setScene(scene);
         stage.show();
+        //}
+        
     }
     /**
      * @param args the command line arguments

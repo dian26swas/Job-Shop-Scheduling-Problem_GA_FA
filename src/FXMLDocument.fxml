@@ -2,33 +2,53 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="385.0" prefWidth="462.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="623.0" prefWidth="505.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
     <children>
-        <Button fx:id="menu" layoutX="361.0" layoutY="21.0" onAction="#handleButtonAction" text="Choose File" />
+        <Button fx:id="choose" layoutX="412.0" layoutY="21.0" onAction="#buttonFileChooser" text="Choose File" />
         <Label fx:id="labelInput" layoutX="23.0" layoutY="25.0" minHeight="16" minWidth="69" prefHeight="17.0" prefWidth="95.0" text="Input Text (File) :" />
       
-      <Label fx:id="labelAlpha" layoutX="284.0" layoutY="163.0" minHeight="16" minWidth="21.0" prefHeight="17.0" prefWidth="95.0" text="Nilai α (alpha) :" />
-      <TextField fx:id="label" layoutX="133.0" layoutY="21.0" prefHeight="25.0" prefWidth="217.0" />
+      <Label fx:id="labelAlpha" layoutX="228.0" layoutY="163.0" minHeight="16" minWidth="21.0" prefHeight="17.0" prefWidth="95.0" text="Nilai alpha (α)  :" />
+      <TextField fx:id="label" layoutX="133.0" layoutY="21.0" prefHeight="25.0" prefWidth="265.0" />
       <Label layoutX="23.0" layoutY="59.0" text="Jumlah Generasi :" />
       <Label layoutX="23.0" layoutY="135.0" text="Parameter Algoritma Genetik" underline="true" />
-      <Label layoutX="278.0" layoutY="135.0" text="Parameter Algoritma Firefly" underline="true" />
+      <Label layoutX="222.0" layoutY="135.0" text="Parameter Algoritma Firefly" underline="true" />
       <Label layoutX="31.0" layoutY="163.0" text="Mutation Rate :" />
       <Label layoutX="30.0" layoutY="192.0" text="Crossover Rate :" />
-      <Label layoutX="284.0" layoutY="192.0" text="Nilai base beta :" />
-      <Label layoutX="285.0" layoutY="221.0" text="Nilai  Gamma : " />
+      <Label layoutX="228.0" layoutY="192.0" text="Nilai base beta (β0) :" />
+      <Label layoutX="229.0" layoutY="221.0" text="Nilai gamma (γ) : " />
       <TextField fx:id="jmlGenerasi" layoutX="133.0" layoutY="54.0" prefHeight="25.0" prefWidth="45.0" />
-      <Button fx:id="btnResult" layoutX="43.0" layoutY="261.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="381.0" text="Result" />
+      <Button fx:id="btnRes" layoutX="412.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="38.0" prefWidth="64.0" text="RESULT" underline="true" />
       <TextField fx:id="nilaiMr" layoutX="118.0" layoutY="159.0" prefHeight="25.0" prefWidth="45.0" />
       <TextField fx:id="nilaiCr" layoutX="118.0" layoutY="188.0" prefHeight="25.0" prefWidth="45.0" />
-      <TextField fx:id="nilaiAlpha" layoutX="377.0" layoutY="159.0" prefHeight="25.0" prefWidth="45.0" />
-      <TextField fx:id="nilaiBeta" layoutX="377.0" layoutY="188.0" prefHeight="25.0" prefWidth="45.0" />
-      <TextField fx:id="nilaiGamma" layoutX="377.0" layoutY="217.0" prefHeight="25.0" prefWidth="45.0" />
-      <TextField fx:id="result" layoutX="47.0" layoutY="294.0" prefHeight="77.0" prefWidth="374.0" />
+      <TextField fx:id="nilaiAlpha" layoutX="351.0" layoutY="159.0" prefHeight="25.0" prefWidth="45.0" />
+      <TextField fx:id="nilaiBeta" layoutX="351.0" layoutY="188.0" prefHeight="25.0" prefWidth="45.0" />
+      <TextField fx:id="nilaiGamma" layoutX="351.0" layoutY="217.0" prefHeight="25.0" prefWidth="45.0" />
       <Label layoutX="23.0" layoutY="92.0" text="Jumlah Populasi :" />
       <TextField fx:id="jmlPopulasi" layoutX="133.0" layoutY="87.0" prefHeight="25.0" prefWidth="45.0" />
+      <Label fx:id="labelAlpha1" layoutX="32.0" layoutY="293.0" minHeight="16" minWidth="21.0" prefHeight="38.0" prefWidth="25.0" text="GA">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelAlpha11" layoutX="32.0" layoutY="411.0" minHeight="16" minWidth="21.0" prefHeight="38.0" prefWidth="25.0" text="FA">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelAlpha12" layoutX="17.0" layoutY="530.0" minHeight="16" minWidth="21.0" prefHeight="38.0" prefWidth="56.0" text="GA- FA">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="resultGA" layoutX="91.0" layoutY="263.0" prefHeight="98.0" prefWidth="374.0" />
+      <TextArea fx:id="resultFA" layoutX="91.0" layoutY="381.0" prefHeight="98.0" prefWidth="374.0" />
+      <TextArea fx:id="resultGAFA" layoutX="91.0" layoutY="500.0" prefHeight="98.0" prefWidth="374.0" />
+      <Button fx:id="btnReset" layoutX="412.0" layoutY="153.0" mnemonicParsing="false" onAction="#actionPerformed" prefHeight="38.0" prefWidth="64.0" text="RESET" textFill="#f20303" underline="true" />
       
       
     </children>

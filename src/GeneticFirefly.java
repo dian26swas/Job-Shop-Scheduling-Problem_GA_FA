@@ -1,125 +1,40 @@
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
  * @author ASUS
  */
-public class Tester {
+public class GeneticFirefly {
+    
+    private double mutationRate;
+    private double crossoverRate;
+    private double beta;
+    private double gamma;
+    private double alpha;
 
-//    public static Gen[] arrGen;
-//    public static List<Gen> listGen;
-    public static Individu[] populasi;
-
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
-        String lines = reader.readLine();
-        String[] currentLine = lines.split("\\s+");
-        int job = Integer.parseInt(currentLine[0]);
-        int mesin = Integer.parseInt(currentLine[1]);
-        ArrayList<String[]> horiLines = new ArrayList<String[]>();
-
-        System.out.println("job " + job + " mesin " + mesin);
-        int count = 0;
-        int[] arrMesin = new int[mesin * job];
-        int[] arrWaktu = new int[mesin * job];
-        int[] arrJob = new int[mesin * job];
+    public GeneticFirefly(double mutationRate, double crossoverRate, double beta, double gamma, double alpha) {
+        this.mutationRate = mutationRate;
+        this.crossoverRate = crossoverRate;
+        this.beta = beta;
+        this.gamma = gamma;
+        this.alpha = alpha;
+    }
+ 
+     public Individu[] gafaStep(Individu[] populasi,Gen[] arrTemp,int generasi,JobShop js,ArrayList<Individu> popFit)
+    {
+        //arrTemp itu nyimpen smeua informasi awal dari gen
+        AlgoritmaGenetik ga= new AlgoritmaGenetik(this.mutationRate, this.crossoverRate);
+        AlgoritmaFirefly fa= new AlgoritmaFirefly(this.beta, this.gamma, this.alpha);
         
-        int pjgMesin = 0;
-        int pjgWaktu = 0;
-        int pjgJob=0;
-        for (int j = 0; j < job; j++) {
-            lines = reader.readLine();
-            if (lines != null) {
-                currentLine = lines.split(" ");
-            }
-            horiLines.add(currentLine);
-
-            for (int i = 0; i < currentLine.length; i++) {
-                if (i % 2 == 1) {
-                    arrWaktu[pjgWaktu] = Integer.parseInt(horiLines.get(count)[i]);
-                    pjgWaktu += 1;
-                    arrJob[pjgJob]=j;
-                    pjgJob++;
-                } else {
-                    arrMesin[pjgMesin] = Integer.parseInt(horiLines.get(count)[i]);
-                    pjgMesin++;
-                }
-                
-            }
-            
-            //horiLines.get(count);
-            count++;
-        }
-        ArrayList<Individu> popFit = new ArrayList<Individu>();
-        //bangkitkan populasi
-        //System.out.println("Jumlah isi Populasi");
-        populasi= new Individu[5];
-        System.out.println("Generate Populasi :");
-        int mk=0;
-        Individu fit=null;
-        JobShop js= new JobShop( 5, job, mesin);
-        Gen[] arrGen = new Gen[job * mesin];
-        Gen[] arrTemp = new Gen[job * mesin];
-        
-        String[][] op= new String[job][mesin];
-            int counter = 0;
-            for (int j = 1; j <= job; j++) {
-                for (int o = 1; o <= mesin; o++) {
-                    op[j - 1][o - 1] = "O" + j + o + "";
-                    
-                    arrTemp[counter] = new Gen(op[j - 1][o - 1], arrWaktu[counter], -1, -1, arrMesin[counter], 0, 0,arrJob[counter]);
-                    arrTemp[counter].setNoJob(j);
-                    counter++;
-                }
-            }
-        for (int i = 0; i < 5; i++) {
-            
-            String[][] operation = new String[job][mesin];
-            counter = 0;
-            for (int j = 1; j <= job; j++) {
-                for (int o = 1; o <= mesin; o++) {
-                    operation[j - 1][o - 1] = "O" + j + o + "";
-                    arrGen[counter] = new Gen(operation[j - 1][o - 1], arrWaktu[counter], -1, -1, arrMesin[counter], 0, 0,arrJob[counter]);
-                    arrGen[counter].setNoJob(j);
-                    counter++;
-                }
-            }
-
-            //arrGen[i].getMakespanTemp(); System.out.println("testing");
-            Gen[] kromo=js.generateKromosom(arrGen);
-            int makespan=js.calcMakespan(kromo);
-            double fitnes=js.calcFitness(makespan);           
-            Individu individu=new Individu(kromo,fitnes,makespan);
-            populasi[i]= individu;
-            System.out.println(populasi[i].getFitness());
-            
-            
-        }
-        
-        Individu id= js.getFittest(populasi);
-        popFit.add(id);
-        fit = new Individu(id.getKromosom(),id.getFitness(),id.getMakespan());
-        System.out.println(id.getFitness());
-       
-        AlgoritmaGenetik ga= new AlgoritmaGenetik(0.3, 0.8);
-        for (int generasi = 0; generasi < 5; generasi++) {
-            popFit.add(js.getFittest(populasi));
+        for (int g = 0; g < generasi; g++) {
+                 popFit.add(js.getFittest(populasi));
             System.out.println("Best solution: " + js.getFittest(populasi).getFitness());
             
             //seleksi roulette dipanggil langsung di method cross over
@@ -134,7 +49,7 @@ public class Tester {
             // swap mutation
             Individu[] popMut = ga.mutation(popCross);
             popMut[0]=popFit.get(popFit.size()-1);
-            Gen[] gener= new Gen[mesin*job];
+            Gen[] gener= new Gen[arrTemp.length];
             for (int i = 0; i < popMut.length; i++) {
                 popMut[i].setFitness(0.0);
                 popMut[i].setMakespan(0);
@@ -166,9 +81,7 @@ public class Tester {
             }
            populasi = popMut;
             //masuk algoritma Firefly
-            AlgoritmaFirefly fa = new AlgoritmaFirefly(1, 0.1, 1);
-
-
+           
             for (int popF = 0; popF < populasi.length - 1; popF++) {
                 
                 for (int po = popF + 1; po < populasi.length; po++) {
@@ -178,7 +91,7 @@ public class Tester {
                         populasi[po].setFitness(0.0);
                         populasi[po]=fa.alphaStepOS(populasi[po], populasi[popF]);
                         //System.out.println(populasi[po].getMakespan());
-                        Gen[] gen= new Gen[job*mesin];
+                        Gen[] gen= new Gen[arrTemp.length];
                         for(int i=0;i<populasi[po].getKromosom().length;i++)
                         {
                             for(int j=0;j<populasi[po].getKromosom().length;j++)
@@ -202,8 +115,7 @@ public class Tester {
                         
                         int makespan=js.calcMakespan(gen);
                         double fitnes=js.calcFitness(makespan);
-//                        Individu indiv= new Individu(gen,fitnes,makespan);
-//                        populasi[po]= indiv;
+
                         populasi[po].setMakespan(makespan);
                         populasi[po].setFitness(fitnes);
 
@@ -213,7 +125,7 @@ public class Tester {
                         int rand1 = (int) ((Math.random() * (max - 1)) + 1);
                         int rand2 = (int) ((Math.random() * (max - 1)) + 1);
                         populasi[rand1]=fa.alphaStepOS(populasi[rand1], populasi[rand2]);
-                        Gen[] gen= new Gen[job*mesin];
+                        Gen[] gen= new Gen[arrTemp.length];
                         for(int i=0;i<populasi[rand1].getKromosom().length;i++)
                         {
                             for(int j=0;j<populasi[rand1].getKromosom().length;j++)
@@ -246,11 +158,15 @@ public class Tester {
          System.out.println("Fittest saat pertama di generate kromosom");
          System.out.println(popFit.get(0).getFitness());
         System.out.println("Fittest :");
-        for(int i=1;i<popFit.size();i++)
+        Individu[] result= new Individu[popFit.size()];
+        for(int i=0;i<popFit.size();i++)
         {
+            result[i]=popFit.get(i);
             System.out.println(popFit.get(i).getFitness());
         }
-
+        return result;
+        
+    
     }
-
+    
 }
